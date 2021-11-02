@@ -64,6 +64,10 @@
   --bs-body-bg: #fff;
 }
 
+  main.mb-4  p{
+       text-align: justify;
+  }
+
 *,
 *::before,
 *::after {
