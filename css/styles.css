@@ -11261,3 +11261,8 @@ header.masthead .site-heading .h1 {
     font-size: 2.25rem;
   }
 }
+
+
+.noticia-img img {
+  max-height: 100%;
+}
