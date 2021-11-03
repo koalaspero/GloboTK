@@ -78,7 +78,11 @@ body > main:nth-child(4) > div > div > div > p{
     bottom: 0;
     left: 0;
     position: absolute !important;
+    background-image: url("https://www.htmlcsscolor.com/preview/gallery/A683E3.png");
 }
+
+
+
 *,
 *::before,
 *::after {
