@@ -64,7 +64,7 @@
   --bs-body-bg: #fff;
 }
 
-  main.mb-4  p{
+  .mb-4  p, .card p{
        text-align: justify;
   }
 
@@ -11219,7 +11219,7 @@ header.masthead .site-heading .h1 {
 .section-heading {
   font-size: 2.25rem;
   font-weight: 700;
-  margin-top: 3.75rem;
+  margin-top: 1rem;
 }
 
 .caption {
@@ -11260,9 +11260,4 @@ header.masthead .site-heading .h1 {
   .post-preview > a > .post-title {
     font-size: 2.25rem;
   }
-}
-
-
-.noticia-img img {
-  max-height: 100%;
 }
