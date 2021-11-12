@@ -20,42 +20,6 @@
 	<script src="js/helloWorldWind.js" type="text/javascript">
 	</script>-->
 	<script src="http://www.webglearth.com/v2/api.js"></script>
-    <script>
-      function initialize() {
-        var earth = new WE.map('earth_div');
-        WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(earth);
-
-        var marker = WE.marker([55.13022174832288, -2.1501015625996502]).addTo(earth);
-        marker.bindPopup("<b>Reino Unido</b><br>Mensaje a modificar<br><a href='https://spotifycharts.com/regional/ec/daily/latest'>click me bro</a>", {maxWidth: 120, closeButton: true});
-		
-		var marker2 = WE.marker([39.74655633461223, -97.87748092389369]).addTo(earth);
-		marker2.bindPopup("<b>Estados Unidos</b><br>Mensaje a modificar<br><a href='https://spotifycharts.com/regional/us/daily/latest'>click me bro</a>", {maxWidth: 120, closeButton: true})
-		
-		var marker3 = WE.marker([-1.6842206817451066, -78.38819982748731]).addTo(earth);
-		marker3.bindPopup("<b>Ecuador</b><br>Mensaje a modificar<br><a href='https://spotifycharts.com/regional/ec/daily/latest'>click me bro</a>", {maxWidth: 120, closeButton: true}).openPopup();
-		
-		var marker4 = WE.marker([-8.542575630261394, -76.32942378307771]).addTo(earth);
-		marker4.bindPopup("<b>Peru</b><br>Mensaje a modificar<br><a href='https://spotifycharts.com/regional/pe/daily/latest'>click me bro</a>", {maxWidth: 120, closeButton: true});
-		
-		var marker5 = WE.marker([23.294039441598297, -102.32504072187078]).addTo(earth);
-		marker5.bindPopup("<b>Mexico</b><br>Mensaje a modificar<br><a href='https://spotifycharts.com/regional/mx/daily/latest'>click me bro</a>", {maxWidth: 120, closeButton: true});
-		
-		var marker6 = WE.marker([-25.776366550495652, -69.91373866949007]).addTo(earth);
-		marker6.bindPopup("<b>Chile</b><br>Mensaje a modificar<br><a href='https://spotifycharts.com/regional/cl/daily/latest'>click me bro</a>", {maxWidth: 120, closeButton: true});
-		
-		var marker7 = WE.marker([4.565426908688672, -72.70514785161838]).addTo(earth);
-		marker7.bindPopup("<b>Colombia</b><br>Mensaje a modificar<br><a href='https://spotifycharts.com/regional/co/daily/latest'>click me bro</a>", {maxWidth: 120, closeButton: true});
-		
-		var marker8 = WE.marker([-9.244049112738173, -52.99158843500377]).addTo(earth);
-		marker8.bindPopup("<b>Brasil</b><br>Mensaje a modificar<br><a href='https://spotifycharts.com/regional/br/daily/latest'>click me bro</a>", {maxWidth: 120, closeButton: true});
-		
-		
-
-        var markerCustom = WE.marker([50, -9], '/img/logo-webglearth-white-100.png', 100, 24).addTo(earth);
-
-        earth.setView([-1.6, -78], 4);
-      }
-	  </script>
 </head>
 <body onload="initialize()">
     <!-- Navigation-->
