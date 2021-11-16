@@ -51,3 +51,52 @@ function initialize() {
 }
 
 
+const peticion = () => {
+   let proxy = 'https://damp-beach-17296.herokuapp.com/'
+   let url = 'https://api.eluniverso.arcpublishing.com/feeds/rss/?website=el-universo&query=taxonomy.sections._id:%22/entretenimiento/musica%22&sort=first_publish_date:desc'
+
+   fetch(proxy+url)
+   .then(response => response.text())
+   .then(data =>{
+     const parser = new DOMParser();
+     const xml = parser.parseFromString(data, "application/xml");
+
+     let items =xml.getElementsByTagName('item')
+
+     for(let item of items){
+       let plantilla = `
+        <div class="card mb-3" >
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="assets/img/news01.jpg" class="img-fluid img-thumbnail" alt="news01">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <a href=""><h5 class="card-title">Card title</a></h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><small class="text-muted">Updated: Nov/3/2021</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        `
+
+      let title = item.getElementsByTagName('title')[0]
+      let texto = item.getElementsByTagName('description')[0]
+	  let date = item.getElementsByTagName('pubDate')[0]
+
+      plantilla = plantilla.replace('Card title', title.innerHTML)
+      plantilla = plantilla.replace('This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.', texto.innerHTML)
+	  plantilla = plantilla.replace('Updated: Nov/3/2021', date.innerHTML)
+
+      document.getElementsByClassName('noticias container')[0].innerHTML += plantilla
+     }
+
+     console.log(xml);
+   })
+
+
+   .catch(console.error)
+ }
+
+ peticion()
