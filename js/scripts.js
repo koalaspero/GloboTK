@@ -63,7 +63,7 @@ const peticion = () => {
 
      let items =xml.getElementsByTagName('item')
 
-     for(let item of items){
+     for(let i=0 ; i < 5 ; i++){
        let plantilla = `
         <div class="card mb-3" >
                 <div class="row g-0">
@@ -81,9 +81,9 @@ const peticion = () => {
               </div>
         `
 
-      let title = item.getElementsByTagName('title')[0]
-      let texto = item.getElementsByTagName('description')[0]
-	  let date = item.getElementsByTagName('pubDate')[0]
+      let title = items[i].getElementsByTagName('title')[0]
+      let texto = items[i].getElementsByTagName('description')[0]
+	  let date = items[i].getElementsByTagName('pubDate')[0]
 
       plantilla = plantilla.replace('Card title', title.innerHTML)
       plantilla = plantilla.replace('This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.', texto.innerHTML)
