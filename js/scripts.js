@@ -60,6 +60,7 @@ const peticion = () => {
    .then(data =>{
      const parser = new DOMParser();
      const xml = parser.parseFromString(data, "application/xml");
+     var opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
      let items =xml.getElementsByTagName('item')
 
@@ -83,11 +84,11 @@ const peticion = () => {
 
       let title = items[i].getElementsByTagName('title')[0]
       let texto = items[i].getElementsByTagName('description')[0]
-	  let date = items[i].getElementsByTagName('pubDate')[0]
+	    let date = new Date(items[i].getElementsByTagName('pubDate')[0].textContent)
 
       plantilla = plantilla.replace('Card title', title.innerHTML)
       plantilla = plantilla.replace('This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.', texto.innerHTML)
-	  plantilla = plantilla.replace('Updated: Nov/3/2021', date.innerHTML)
+	    plantilla = plantilla.replace('Updated: Nov/3/2021', date.toLocaleString('esp',opciones))
 
       document.getElementsByClassName('noticias container')[0].innerHTML += plantilla
      }
@@ -99,4 +100,4 @@ const peticion = () => {
    .catch(console.error)
  }
 
- peticion()
+ 
