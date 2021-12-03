@@ -51,10 +51,9 @@ function initialize() {
 }
 
 
-const peticion = () => {
+const peticion = (url) => {
    let proxy = 'https://damp-beach-17296.herokuapp.com/'
    //RSS de música latina de Billboard
-   let url = 'https://rss.app/feeds/yUvE3qNwUCZ9GG1E.xml'
 
    fetch(proxy+url)
    .then(response => response.text())
@@ -62,7 +61,8 @@ const peticion = () => {
      const parser = new DOMParser();
      const xml = parser.parseFromString(data, "application/xml");
      var opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
+	 
+	document.getElementsByClassName('noticias container')[0].innerHTML = "";
      let items =xml.getElementsByTagName('item');
      console.log(items[1].getElementsByTagName("description"))
 
