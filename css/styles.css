@@ -64,6 +64,40 @@
   --bs-body-bg: #fff;
 }
 
+
+.img-01, .img-02 {
+  width: 100%;
+  height: auto;
+  position: static;
+  cursor: none;
+  transition: 650ms ease;
+  margin: 0 auto;
+}
+
+/*.img-01{
+  z-index: 2;
+}*/
+
+.img-02{
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(100px);
+}
+
+.img-01:hover {
+  opacity: 0;
+}
+
+.img-01:hover ~ .img-02 {
+    opacity: 1;
+    filter: blur(0);
+}
+
+
+
+
+
+
   .mb-4  p, .card p{
        text-align: justify;
   }
@@ -73,7 +107,7 @@ body > main:nth-child(4) > div > div > div > p{
 }
 
 #map {
-  height: 100%;
+  height: 50%;
 }
 
 #earth_div {

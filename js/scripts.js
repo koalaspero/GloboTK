@@ -83,17 +83,41 @@ const peticion = (url) => {
                 </div>
               </div>
         `
-
+      plantillaAlter = `
+      <div class="card mb-3" >
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="" class="img-fluid img-thumbnail" alt="news_img">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title">Card title</h3>
+                    <a href=""><p data-step="2" data-intro="Texto que al darle click o tocarle (moviles), nos lleva a la noticia completa" class ="card-text">More Info</p></a>
+                    <p class="card-text"><small class="text-muted">Updated: {fecha}</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+      `
       let title = items[i].getElementsByTagName('title')[0]
       let imag = items[i].getElementsByTagName('enclosure')[0]
 	    let date = new Date(items[i].getElementsByTagName('pubDate')[0].textContent)
       let enlace = items[i].getElementsByTagName("link")[0]
-      plantilla = plantilla.replace('Card title', title.innerHTML).replace('<![CDATA[',"").replace(']]>','');
-      plantilla = plantilla.replace('src=""', 'src="'+imag.getAttribute("url")+'"');
-	    plantilla = plantilla.replace('{fecha}', date.toLocaleString('esp',opciones))
-      plantilla = plantilla.replace('a href="','a href="'+enlace.innerHTML+'"');
+      
+      if(i==1){
+        plantillaAlter = plantillaAlter.replace('Card title', title.innerHTML).replace('<![CDATA[',"").replace(']]>','');
+        plantillaAlter = plantillaAlter.replace('src=""', 'src="'+imag.getAttribute("url")+'"');
+	      plantillaAlter = plantillaAlter.replace('{fecha}', date.toLocaleString('esp',opciones))
+        plantillaAlter = plantillaAlter.replace('a href="','a href="'+enlace.innerHTML+'"');
+        document.getElementsByClassName('noticias container')[0].innerHTML += plantillaAlter;
+      }else{
+        plantilla = plantilla.replace('Card title', title.innerHTML).replace('<![CDATA[',"").replace(']]>','');
+        plantilla = plantilla.replace('src=""', 'src="'+imag.getAttribute("url")+'"');
+	      plantilla = plantilla.replace('{fecha}', date.toLocaleString('esp',opciones))
+        plantilla = plantilla.replace('a href="','a href="'+enlace.innerHTML+'"');
 
-      document.getElementsByClassName('noticias container')[0].innerHTML += plantilla
+        document.getElementsByClassName('noticias container')[0].innerHTML += plantilla
+      }
      }
 
      console.log(xml);
