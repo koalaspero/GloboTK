@@ -53,7 +53,8 @@ function initialize() {
 
 const peticion = () => {
    let proxy = 'https://damp-beach-17296.herokuapp.com/'
-   let url = 'https://api.eluniverso.arcpublishing.com/feeds/rss/?website=el-universo&query=taxonomy.sections._id:%22/entretenimiento/musica%22&sort=first_publish_date:desc'
+   //RSS de música latina de Billboard
+   let url = 'https://rss.app/feeds/yUvE3qNwUCZ9GG1E.xml'
 
    fetch(proxy+url)
    .then(response => response.text())
@@ -62,20 +63,21 @@ const peticion = () => {
      const xml = parser.parseFromString(data, "application/xml");
      var opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-     let items =xml.getElementsByTagName('item')
+     let items =xml.getElementsByTagName('item');
+     console.log(items[1].getElementsByTagName("description"))
 
-     for(let i=0 ; i < 5 ; i++){
+     for(let i=1 ; i < 11 ; i++){
        let plantilla = `
         <div class="card mb-3" >
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="assets/img/news01.jpg" class="img-fluid img-thumbnail" alt="news01">
+                    <img src="" class="img-fluid img-thumbnail" alt="news_img">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <a href=""><h5 class="card-title">Card title</a></h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Updated: Nov/3/2021</small></p>
+                      <h3 class="card-title">Card title</h3>
+                      <a href=""><p class ="card-text">More Info</p></a>
+                      <p class="card-text"><small class="text-muted">Updated: {fecha}</small></p>
                     </div>
                   </div>
                 </div>
@@ -83,12 +85,13 @@ const peticion = () => {
         `
 
       let title = items[i].getElementsByTagName('title')[0]
-      let texto = items[i].getElementsByTagName('description')[0]
+      let imag = items[i].getElementsByTagName('enclosure')[0]
 	    let date = new Date(items[i].getElementsByTagName('pubDate')[0].textContent)
-
-      plantilla = plantilla.replace('Card title', title.innerHTML)
-      plantilla = plantilla.replace('This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.', texto.innerHTML)
-	    plantilla = plantilla.replace('Updated: Nov/3/2021', date.toLocaleString('esp',opciones))
+      let enlace = items[i].getElementsByTagName("link")[0]
+      plantilla = plantilla.replace('Card title', title.innerHTML).replace('<![CDATA[',"").replace(']]>','');
+      plantilla = plantilla.replace('src=""', 'src="'+imag.getAttribute("url")+'"');
+	    plantilla = plantilla.replace('{fecha}', date.toLocaleString('esp',opciones))
+      plantilla = plantilla.replace('a href="','a href="'+enlace.innerHTML+'"');
 
       document.getElementsByClassName('noticias container')[0].innerHTML += plantilla
      }
@@ -99,7 +102,6 @@ const peticion = () => {
 
    .catch(console.error)
  }
- 
 
 function initMap() {
 	var map = L.map('map').setView([-2.1449, -79.9676], 15);
