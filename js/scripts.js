@@ -47,7 +47,7 @@ function initialize() {
 
     var markerCustom = WE.marker([50, -9], '/img/logo-webglearth-white-100.png', 100, 24).addTo(earth);
 
-    earth.setView([-1.6, -78], 4);
+    earth.setView([-1.6, -78], 3.5);
 }
 
 
@@ -99,5 +99,18 @@ const peticion = () => {
 
    .catch(console.error)
  }
+ 
+
+function initMap() {
+  var map = L.map('map').setView([-2.1449, -79.9676], 16);
+
+	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+
+	L.marker([-2.1449, -79.9676]).addTo(map)
+		.bindPopup('FIEC ESPOL')
+		.openPopup();
+}
 
  
