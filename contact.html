@@ -28,6 +28,9 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="css\forms.css" rel="stylesheet" />
+        <link href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" rel="stylesheet">
+        <link rel="stylesheet" href="node_modules\intro.js\minified\introjs.min.css"/>
     </head>
     <body onload= "initMap()">
         <!-- Navigation-->
@@ -44,6 +47,7 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">Explorar</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Noticias</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Nosotros</a></li>
+                        <button type="button" class="btn btn-light" onclick="introJs().setOption('showProgress',true).start();">Tour</button>
                     </ul>
                 </div>
             </div>
@@ -64,14 +68,14 @@
         <main class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-5 col-lg-8 col-xl-7">
+                    <div data-step="1" data-intro="Integrantes del grupo" class="col-md-5 col-lg-8 col-xl-7">
                         <p>Grupo de estudiantes politécnicos que hicieron una página, porque se trata de un proyecto.</p>
                         <p>Power Ranger Rojo: Diego Arteaga </p>
 			<p>Power Ranger Azul: Daniel Torres </p>
 			<p>Power Ranger Negro: Diego Reyes </p>
 			<p>Zordon: Rainiero Cedillo </p>
                     </div>
-                    <div class="col-md-5">
+                    <div data-step="2" data-intro="Mapa y posibilidad de ver tu posicion actual respecto a nuestra facultad" class="col-md-5">
 			<div id="map"></div>
                     </div>
                 </div>
@@ -86,83 +90,88 @@
                 </div>
             </div>
         </main>
-        <main class="mb-4">
+        <main data-step="3" data-intro="Formulario de contacto" class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <p>¿Alguna consulta? Contáctanos con el formulario de abajo.</p>
                         <div class="my-5">
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- * * SB Forms Contact Form * *-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- This form is pre-integrated with SB Forms.-->
-                            <!-- To make this form functional, sign up at-->
-                            <!-- https://startbootstrap.com/solution/contact-forms-->
-                            <!-- to get an API token!-->
-                            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                <div class="form-floating">
-                                    <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                    <label for="name">Nombre</label>
-                                    <div class="invalid-feedback" data-sb-feedback="name:required">Nombres es obligatorio.</div>
-                                </div>
-                                <div class="form-floating">
-                                    <input class="form-control" id="email" type="email" placeholder="Enter your email..." data-sb-validations="required,email" />
-                                    <label for="email">Correo electrónico</label>
-                                    <div class="invalid-feedback" data-sb-feedback="email:required">Correo electrónico es obligatorio.</div>
-                                    <div class="invalid-feedback" data-sb-feedback="email:email">Correo no válido.</div>
-                                </div>
-								
-								
-								
-                                <div class="form-floating">
-                                    <input class="form-control" id="phone" type="tel" placeholder="Enter your phone number..." data-sb-validations="required" />
-                                    <label for="phone">Número celular</label>
-                                    <div class="invalid-feedback" data-sb-feedback="phone:required">Número celular es obligatorio.</div>
-                                </div>
-								<div class="form-floating">
-                                    <input class="form-control" id="birthday" type="date" placeholder="Enter your phone number..." data-sb-validations="required" />
-                                    <label for="birthday">Fecha de nacimiento</label>
-                                    <div class="invalid-feedback" data-sb-feedback="phone:required">Fecha de nacimiento es obligatorio.</div>
-                                </div>
-								<div class="form-floating">
-                                    <select class="form-select" id="place" placeholder="Enter your phone number..." data-sb-validations="required" />
-									<option value="Ecuador">Ecuador</option>
-									<option value="Colombia">Colombia</option>
-									<option value="Perú">Perú</option>
-									<option value="México">México</option>
-									<option value="Chile">Chile</option>
-									<option value="Argentina">Argentina</option>
-									</select>
-									<div class="invalid-feedback" data-sb-feedback="phone:required">Lugar de origen es obligatorio.</div>
-									<label for="place">Lugar de origen</label>
-                                </div>
-								
-                                <div class="form-floating">
-                                    <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 12rem" data-sb-validations="required"></textarea>
-									<label for="message">Detalle</label>
-                                    <div class="invalid-feedback" data-sb-feedback="message:required">Detalle es obligatorio.</div>
-                                </div>
-								
-                                <br />
-                                <!-- Submit success message-->
-                                <!---->
-                                <!-- This is what your users will see when the form-->
-                                <!-- has successfully submitted-->
-                                <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center mb-3">
-                                        <div class="fw-bolder">¡Envío exitoso!</div>
-                                        <br />
-                                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                            <form >
+                                <h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong>Datos de contacto</strong></h2>
+                                
+                                <!-- Stepper -->
+                                <div class="steps-form-2">
+                                    <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
+                                        <div class="steps-step-2">
+                                            <a href="#step-1" type="button" class="btn btn-amber btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Basic Information"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                                        </div>
+                                        <div class="steps-step-2">
+                                            <a href="#step-2" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="More Information"><i class="fa fa-address-book" aria-hidden="true"></i></a>
+                                        </div>
+                                        <div class="steps-step-2">
+                                            <a href="#step-3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- Submit error message-->
-                                <!---->
-                                <!-- This is what your users will see when there is-->
-                                <!-- an error submitting the form-->
-                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">¡Error al enviar el mensaje!</div></div>
-                                <!-- Submit Button-->
-                                <button class="btn btn-primary text-uppercase disabled" id="submitButton" type="submit">Enviar</button>
-                            </form>
+                                <!-- First Step -->
+                                    <div class="row setup-content-2" id="step-1">
+                                        <div class="col-md-12">
+                                            <h3 class="font-weight-bold pl-0 my-4"><strong>Personal Data</strong></h3>
+                                            <div class="form-group md-form">
+                                                <label for="yourName-2" data-error="wrong" data-success="right">Nombre</label>
+                                                <input id="yourName-2" type="text" required="required" class="form-control validate">
+                                            </div>
+                                            <div class="form-group md-form">
+                                                <label for="yourEmail-2" data-error="wrong" data-success="right">Email</label>
+                                                <input id="yourEmail-2" type="email" required="required" class="form-control validate">
+                                            </div>
+                                            <div class="form-group md-form">
+                                                <label for="phoneNumber-2" data-error="wrong" data-success="right">Número Telefónico</label>
+                                                <input id="phoneNumber-2" type="text" required="required" class="form-control validate">
+                                            </div>
+                                            <button class="btn btn-mdb-color btn-rounded prevBtn-2 float-left" type="button">Previous</button>
+                                            <button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right" type="button">Next</button>
+                                        </div>
+                                    </div>
+                                
+                                    <!-- Second Step -->
+                                    <div class="row setup-content-2" id="step-2">
+                                        <div class="col-md-12">
+                                            <h3 class="font-weight-bold pl-0 my-4"><strong>More information</strong></h3>
+                                              <div class="form-group md-form">
+                                                   <label for="birthdate-2" data-error="wrong" data-success="right">Fecha de nacimiento</label>
+                                                      <input class="form-control" id="birthdate-2" type="date"  required="required" class="form-control validate" />
+                                              </div>
+                                              <div class="form-group md-form">
+                                                   <label for="Origin-2" data-error="wrong" data-success="right">Lugar de Origen</label>
+                                                          <select class="form-select" id="Origin-2" required="required">
+                                                                            <option value="Ecuador">Ecuador</option>
+                                                                            <option value="Colombia">Colombia</option>
+                                                                            <option value="Perú">Perú</option>
+                                                                            <option value="México">México</option>
+                                                                            <option value="Chile">Chile</option>
+                                                                            <option value="Argentina">Argentina</option>
+                                                                        </select>
+                                              </div>
+                                              <div class="form-group md-form">
+                                                  <label for="detail-2" data-error="wrong" data-success="right">Detalle</label>
+                                                <textarea id="detail-2" type="text" required="required" rows="3" class="md-textarea validate form-control"></textarea>
+                                              </div>
+                                            <button class="btn btn-mdb-color btn-rounded prevBtn-2 float-left" type="button">Previous</button>
+                                            <button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right" type="button">Next</button>
+                                        </div>
+                                    </div>
+                                
+                                    <!-- Third Step -->
+                                    <div class="row setup-content-2" id="step-3">
+                                        <div class="col-md-12">
+                                            <h3 class="font-weight-bold pl-0 my-4"><strong>Finish</strong></h3>
+                                            <h2 class="text-center font-weight-bold my-4">Registration completed!</h2>
+                                            <button class="btn btn-mdb-color btn-rounded prevBtn-2 float-left" type="button">Previous</button>
+                                            <button class="btn btn-success btn-rounded float-right" type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
                         </div>
                     </div>
                 </div>
@@ -178,14 +187,13 @@
                 </div>
             </div>
         </footer>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="form.js"></script>
+        <script src="node_modules\intro.js\minified\intro.min.js" ></script>
     </body>
 </html>
